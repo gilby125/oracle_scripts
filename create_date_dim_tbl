@@ -1,0 +1,16 @@
+o the whole thing in 14 lines of code.
+SQL&gt; CREATE TABLE d_date AS
+  2  SELECT
+  3     n AS Date_ID,
+  4     TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day') AS Full_Date,
+  5     TO_CHAR(TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day'),'DD') AS Days,
+  6     TO_CHAR(TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day'),'Mon') AS Month_Short,
+  7     TO_CHAR(TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day'),'MM') AS Month_Num,
+  8     TO_CHAR(TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day'),'Month') AS Month_Long,
+  9     TO_CHAR(TO_DATE('31/12/2007','DD/MM/YYYY') + NUMTODSINTERVAL(n,'day'),'YYYY') AS Year
+ 10  FROM (
+ 11  select level n
+ 12  from dual
+ 13  connect by level &lt;= 2000
+ 14  );
+Table created.
